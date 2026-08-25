@@ -1,0 +1,44 @@
+{
+  "name": "hairday",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Victor Martins Dias <victormartinsjob@gmail.com> (https://github.com/VictorMartinsD)",
+  "description": "Aplicação web para agendamento e gestão diária de cortes de cabelo integrada a uma API fictícia com JSON Server.",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "preview": "npx serve dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "npm run lint && prettier --check .",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{html,css}": "prettier --write",
+    "**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@eslint/js": "^9.0.0",
+    "babel-loader": "^10.1.1",
+    "css-loader": "^7.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "globals": "^15.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.0.0",
+    "prettier": "latest",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^6.0.0"
+  }
+}
