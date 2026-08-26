@@ -6,8 +6,9 @@
   "description": "Aplicação web para agendamento e gestão diária de cortes de cabelo integrada a uma API fictícia com JSON Server.",
   "main": "src/main.js",
   "scripts": {
-    "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
+    "dev": "webpack serve --mode development",
+    "server": "json-server --watch server.json --port 3333",
     "preview": "npx serve dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -24,11 +25,12 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
     "@eslint/js": "^9.0.0",
-    "babel-loader": "^10.1.1",
-    "css-loader": "^7.0.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^14.0.0",
+    "css-loader": "^6.8.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "globals": "^15.0.0",
@@ -36,9 +38,12 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.0.0",
     "prettier": "latest",
-    "style-loader": "^4.0.0",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^5.0.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^6.0.0"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.21"
   }
 }

@@ -1,7 +1,9 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+  target: "web",
   mode: "development",
   entry: path.resolve(__dirname, "src", "main.js"),
   output: {
@@ -20,7 +22,16 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
+      favicon: path.resolve(__dirname, "public", "assets", "scissors.svg"),
       inject: "body",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public", "assets"),
+          to: path.resolve(__dirname, "dist", "assets"),
+        },
+      ],
     }),
   ],
   module: {
@@ -28,12 +39,16 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
-        exclude: /node_modules/,
       },
       {
         test: /\.js$/i,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
     ],
   },
