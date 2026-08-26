@@ -1,5 +1,7 @@
 "use strict";
 
+import "./libs/dayjs.js";
+
 import "./styles/reset.css";
 import "./styles/global.css";
 import "./styles/form.css";

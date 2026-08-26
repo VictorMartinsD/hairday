@@ -44,6 +44,7 @@
     "webpack-dev-server": "^6.0.0"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
     "json-server": "^1.0.0-alpha.21"
   }
 }
