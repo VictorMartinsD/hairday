@@ -1,14 +1,25 @@
+import { readLocalSchedules, writeLocalSchedules } from "./schedule-storage.js";
 import { apiConfig } from "./api-config.js";
 
 export async function scheduleCancel({ id }) {
   try {
-    await fetch(`${apiConfig.baseURL}/schedules/${id}`, {
+    const response = await fetch(`${apiConfig.baseURL}/schedules/${id}`, {
       method: "DELETE",
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
     alert("Agendamento cancelado com sucesso!");
+    return;
   } catch (error) {
-    console.error(error);
-    alert("Não foi possível cancelar o agendamento.");
+    console.warn("Fallback local ativado para cancelamento de agendamento.", error);
+
+    const localSchedules = readLocalSchedules();
+    const nextSchedules = localSchedules.filter((schedule) => schedule.id !== id);
+
+    writeLocalSchedules(nextSchedules);
+    alert("Agendamento cancelado com sucesso! (modo offline local)");
   }
 }
