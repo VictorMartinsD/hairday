@@ -10,10 +10,12 @@ export function hoursLoad({ date, dailySchedules }) {
   const unavailableHours = dailySchedules.map((schedule) => dayjs(schedule.when).format("HH:mm"));
 
   const opening = openingHours.map((hour) => {
-    const [hourValue, minuteValue] = hour.split(":");
-    const normalizedHour = `${String(hourValue).padStart(2, "0")}:${minuteValue}`;
+    const [hourValue, minuteValue = "00"] = hour.split(":");
+    const normalizedHour = `${String(hourValue).padStart(2, "0")}:${String(minuteValue).padStart(2, "0")}`;
 
-    const isHourPast = dayjs(date).add(hourValue, "hour").isBefore(dayjs());
+    const parsedHour = Number(hourValue);
+    const parsedMinute = Number(minuteValue);
+    const isHourPast = dayjs(date).hour(parsedHour).minute(parsedMinute).isBefore(dayjs());
     const available = !unavailableHours.includes(normalizedHour) && !isHourPast;
 
     return {

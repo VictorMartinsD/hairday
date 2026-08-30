@@ -27,9 +27,9 @@ form.onsubmit = async (event) => {
       return alert("Selecione a hora.");
     }
 
-    const [hour] = hourSelected.innerText.split(":");
+    const [hour, minute = "00"] = hourSelected.innerText.split(":");
 
-    const when = dayjs(selectedDate.value).add(hour, "hour");
+    const when = dayjs(selectedDate.value).hour(Number(hour)).minute(Number(minute)).second(0).millisecond(0);
 
     const id = String(new Date().getTime());
 

@@ -3,15 +3,14 @@ import { apiConfig } from "./api-config.js";
 import dayjs from "dayjs";
 
 function normalizeScheduleTime(value) {
-  return dayjs(value).format("YYYY-MM-DDTHH:00:00");
+  return dayjs(value).format("YYYY-MM-DDTHH:mm:00");
 }
 
 export async function scheduleNew({ id, name, when }) {
   try {
     const localSchedules = readLocalSchedules();
-    const sameHourExists = localSchedules.some(
-      (schedule) => dayjs(schedule.when).format("YYYY-MM-DDTHH:00:00") === normalizeScheduleTime(when),
-    );
+    const normalizedWhen = normalizeScheduleTime(when);
+    const sameHourExists = localSchedules.some((schedule) => normalizeScheduleTime(schedule.when) === normalizedWhen);
 
     if (sameHourExists) {
       alert("Este horário já foi agendado.");
