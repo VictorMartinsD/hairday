@@ -3,11 +3,17 @@ export function hoursClick() {
 
   hours.forEach((available) => {
     available.addEventListener("click", (selected) => {
+      const clickedHour = selected.currentTarget;
+
+      if (!clickedHour || !clickedHour.classList.contains("hour-available")) {
+        return;
+      }
+
       hours.forEach((hour) => {
         hour.classList.remove("hour-selected");
       });
 
-      selected.target.classList.add("hour-selected");
+      clickedHour.classList.add("hour-selected");
     });
   });
 }

@@ -1,8 +1,23 @@
 import { readLocalSchedules, writeLocalSchedules } from "./schedule-storage.js";
 import { apiConfig } from "./api-config.js";
+import dayjs from "dayjs";
+
+function normalizeScheduleTime(value) {
+  return dayjs(value).format("YYYY-MM-DDTHH:00:00");
+}
 
 export async function scheduleNew({ id, name, when }) {
   try {
+    const localSchedules = readLocalSchedules();
+    const sameHourExists = localSchedules.some(
+      (schedule) => dayjs(schedule.when).format("YYYY-MM-DDTHH:00:00") === normalizeScheduleTime(when),
+    );
+
+    if (sameHourExists) {
+      alert("Este horário já foi agendado.");
+      return;
+    }
+
     const response = await fetch(`${apiConfig.baseURL}/schedules`, {
       method: "POST",
       headers: {

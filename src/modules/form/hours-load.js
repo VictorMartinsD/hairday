@@ -10,13 +10,14 @@ export function hoursLoad({ date, dailySchedules }) {
   const unavailableHours = dailySchedules.map((schedule) => dayjs(schedule.when).format("HH:mm"));
 
   const opening = openingHours.map((hour) => {
-    const [scheduleHour] = hour.split(":");
+    const [hourValue, minuteValue] = hour.split(":");
+    const normalizedHour = `${String(hourValue).padStart(2, "0")}:${minuteValue}`;
 
-    const isHourPast = dayjs(date).add(scheduleHour, "hour").isBefore(dayjs());
-    const available = !unavailableHours.includes(hour) && !isHourPast;
+    const isHourPast = dayjs(date).add(hourValue, "hour").isBefore(dayjs());
+    const available = !unavailableHours.includes(normalizedHour) && !isHourPast;
 
     return {
-      hour,
+      hour: normalizedHour,
       available,
     };
   });
@@ -26,6 +27,8 @@ export function hoursLoad({ date, dailySchedules }) {
 
     li.classList.add("hour");
     li.classList.add(available ? "hour-available" : "hour-unavailable");
+    li.setAttribute("aria-disabled", String(!available));
+    li.setAttribute("tabindex", available ? "0" : "-1");
 
     li.textContent = hour;
 
