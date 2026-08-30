@@ -39,6 +39,6 @@ export async function scheduleNew({ id, name, when }) {
     const mergedSchedules = [...localSchedules, { id, name, when }];
 
     writeLocalSchedules(mergedSchedules);
-    alert("Agendamento realizado com sucesso! (modo offline local)");
+    alert("Agendamento realizado com sucesso!");
   }
 }

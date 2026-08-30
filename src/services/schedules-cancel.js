@@ -20,6 +20,6 @@ export async function scheduleCancel({ id }) {
     const nextSchedules = localSchedules.filter((schedule) => schedule.id !== id);
 
     writeLocalSchedules(nextSchedules);
-    alert("Agendamento cancelado com sucesso! (modo offline local)");
+    alert("Agendamento cancelado com sucesso!");
   }
 }
