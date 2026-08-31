@@ -31,6 +31,24 @@
       name="twitter:description"
       content="Aplicação web para agendamento e consulta de cortes de cabelo por data e horário." />
     <meta name="twitter:image" content="https://victormartinsd.github.io/hairday/preview.png" />
+
+    <style>
+      html {
+        background-color: #19181b;
+      }
+
+      body {
+        opacity: 0;
+        visibility: hidden;
+        background-color: #19181b;
+        transition: opacity 120ms ease-in;
+      }
+
+      html.app-ready body {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
