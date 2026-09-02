@@ -42,7 +42,7 @@ O foco do projeto foi construir um fluxo de agenda simples, com atualização da
 
 <div align="center">
 
-<img width="1919" height="1079" alt="Interface do Hairday" src="https://github.com/user-attachments/assets/62bdbf6c-0696-4770-ab33-d5d26b061261" />
+<img width="1375" height="923" alt="Demonstração da aplicação HairDay exibida em telas de computador e celular, destacando o formulário de agendamento" src="https://github.com/user-attachments/assets/0a0de2b6-f1b3-4351-bdc1-e0de4d705371" />
 
 </div>
 
